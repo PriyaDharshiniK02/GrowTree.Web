@@ -1,0 +1,19 @@
+﻿using System;
+
+namespace GrowTree.Web.Models
+{
+    public class User
+    {
+        public int UserID { get; set; }
+        public string FullName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
+        public string Mobile { get; set; } = string.Empty;
+        public string ReferralCode { get; set; } = string.Empty;
+
+        public User? Sponsor { get; set; }
+
+        public bool IsActive { get; set; }
+
+    }
+}

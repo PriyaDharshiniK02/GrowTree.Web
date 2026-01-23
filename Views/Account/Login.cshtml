@@ -1,0 +1,26 @@
+﻿@model GrowTree.Web.Models.LoginViewModel
+
+<h3 style="text-align:center;">Login</h3>
+
+@if (TempData["Success"] != null)
+{
+    <p style="color:green; text-align:center;">
+        @TempData["Success"]
+    </p>
+}
+
+@Html.ValidationSummary(true, "", new { style = "color:red; text-align:center;" })
+
+<form asp-action="Login" method="post" style="max-width:400px; margin:auto;">
+
+    <input asp-for="Email" placeholder="Email"
+           style="width:100%; padding:10px; margin-bottom:10px;" />
+
+    <input asp-for="Password" type="password" placeholder="Password"
+           style="width:100%; padding:10px; margin-bottom:10px;" />
+
+    <button type="submit"
+            style="width:100%; padding:10px; background:green; color:white; border:none;">
+        Login
+    </button>
+</form>

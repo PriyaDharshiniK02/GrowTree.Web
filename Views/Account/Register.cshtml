@@ -1,0 +1,58 @@
+﻿@model GrowTree.Web.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div style="max-width:500px; margin:auto; margin-top:40px;">
+    <h3 style="text-align:center;">Register</h3>
+    <p style="text-align:center;">Create New Grow Tree Account</p>
+
+    @if (ViewBag.Message != null)
+    {
+        <div style="color: green; text-align: center; margin-bottom: 10px;">
+            @ViewBag.Message
+        </div>
+    }
+
+    @Html.ValidationSummary(true, "", new { style = "color:red; text-align:center;" })
+
+    <form asp-action="Register" method="post">
+
+        <input asp-for="IntroducerCode" placeholder="Enter Introducer ID" style="width:100%; padding:10px; margin-bottom:10px;" />
+
+        <input asp-for="Username" placeholder="Enter your username" style="width:100%; padding:10px; margin-bottom:10px;" />
+
+        <input asp-for="FullName" placeholder="Enter your name" style="width:100%; padding:10px; margin-bottom:10px;" />
+
+        <input asp-for="Email" type="email" placeholder="Enter your email" style="width:100%; padding:10px; margin-bottom:10px;" />
+
+        <select asp-for="Country" style="width:100%; padding:10px; margin-bottom:10px;">
+            <option value="">Select Country</option>
+            <option>India</option>
+            <option>USA</option>
+            <option>UK</option>
+        </select>
+
+        <input asp-for="Mobile" placeholder="Enter your mobile number" style="width:100%; padding:10px; margin-bottom:10px;" />
+
+        <input asp-for="Password" type="password" placeholder="Enter password" style="width:100%; padding:10px; margin-bottom:10px;" />
+
+        <input asp-for="ConfirmPassword" type="password" placeholder="Re-enter password" style="width:100%; padding:10px; margin-bottom:10px;" />
+
+        <input asp-for="TransactionPin" type="password" placeholder="Enter transaction pin" style="width:100%; padding:10px; margin-bottom:10px;" />
+
+        <input asp-for="ConfirmTransactionPin" type="password" placeholder="Re-enter transaction pin" style="width:100%; padding:10px; margin-bottom:10px;" />
+
+        <label>
+            <input asp-for="AgreeTerms" type="checkbox" />
+            I agree to Terms & Privacy Policy
+        </label>
+
+        <br /><br />
+
+        <button type="submit" style="width:100%; padding:10px; background:green; color:white; border:none;">
+            Register
+        </button>
+    </form>
+</div>
