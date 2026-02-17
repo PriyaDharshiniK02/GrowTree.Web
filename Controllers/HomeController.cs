@@ -11,6 +11,16 @@ namespace GrowTree.Web.Controllers
             return View();
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
+
+        public IActionResult Ping()
+        {
+            return Content("APP IS RUNNING OK");
+        }
         public IActionResult Privacy()
         {
             return View();

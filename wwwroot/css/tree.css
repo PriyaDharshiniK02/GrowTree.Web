@@ -1,0 +1,104 @@
+﻿.tree ul {
+    padding-top: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.tree li {
+    list-style-type: none;
+    text-align: center;
+    position: relative;
+    padding: 20px 40px 0 40px;
+}
+
+/* Connector Lines */
+.tree li::before,
+.tree li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 1px solid #a0d0a0; /* Green tint to match theme */
+    width: 50%;
+    height: 20px;
+}
+
+.tree li::after {
+    right: auto;
+    left: 50%;
+    border-left: 1px solid #a0d0a0;
+}
+
+/* Remove connectors for single child */
+.tree li:only-child::before,
+.tree li:only-child::after {
+    display: none;
+}
+
+.tree li:only-child {
+    padding-top: 0;
+}
+
+/* Left child */
+.tree li:first-child::before {
+    border: 0 none;
+}
+
+/* Right child */
+.tree li:last-child::after {
+    border: 0 none;
+}
+
+/* Vertical connector */
+.tree ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 1px solid #a0d0a0;
+    height: 20px;
+}
+
+/* Central Node (level 0) */
+.tree .level-0 .node {
+    background: #e3f2fd !important; /* Light blue like screenshot central */
+    color: #1976d2;
+    border: 3px solid #2196f3;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Level 1 Nodes (immediate children - screenshot shows ~3-4) */
+.tree .level-1 .node {
+    background: #f5f5f5;
+    color: #333;
+    border: 2px solid #ddd;
+}
+
+/* Red node example (match screenshot's red square-ish) */
+.tree .red-node {
+    background: #ffebee !important;
+    border-color: #f44336 !important;
+    color: #c62828;
+    border-radius: 8px; /* Less circular */
+}
+
+/* Green node (top-right in screenshot) */
+.tree .green-node {
+    background: #e8f5e8 !important;
+    border-color: #4caf50 !important;
+    color: #2e7d32;
+}
+
+/* Deeper levels */
+.tree .level-2 .node,
+.tree .level-3 .node {
+    background: #f5f5f5;
+    color: #333;
+    border: 1px solid #ccc;
+    width: 90px;
+    height: 90px;
+    padding: 15px;
+    font-size: 12px;
+}

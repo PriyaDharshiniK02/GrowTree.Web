@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"] - GrowTree</title>
+</head>
+<body>
+
+    <!-- Top Navbar -->
+    <nav style="background:#2c3e50; padding:10px;">
+        <a asp-controller="Home" asp-action="Index" style="color:white; margin-right:15px;">Home</a>
+        <a asp-controller="Home" asp-action="About" style="color:white; margin-right:15px;">About Us</a>
+        <a asp-controller="Account" asp-action="Login" style="color:white; margin-right:15px;">Business Plan</a>
+        <a asp-controller="Account" asp-action="Register" style="color:white;">Download</a>
+        <a asp-controller="Account" asp-action="Register" style="color:white;">Contact Us</a>
+        <a asp-controller="Account" asp-action="Login" style="color:white; margin-right:15px;">Login</a>
+        <a asp-controller="Account" asp-action="Register" style="color:white;">Register</a>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    @RenderSection("Scripts", required: false)
+
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿@model SpilloverNodeViewModel
+<link rel="stylesheet" href="~/css/tree.css" />
+
+<div class="tree">
+    <ul>
+        @{ RenderNode(Model); }
+    </ul>
+</div>
+
+@functions {
+
+    void RenderNode(SpilloverNodeViewModel node)
+    {
+        <li>
+            <div class="node">
+                <div>User @node.UserId</div>
+                <div>Level @node.Level</div>
+            </div>
+
+            @if (node.Left != null || node.Right != null)
+            {
+                <ul>
+                    @if (node.Left != null)
+                    {
+                        { RenderNode(node.Left); }
+                    }
+
+                    @if (node.Right != null)
+                    {
+                        { RenderNode(node.Right); }
+                    }
+                </ul>
+            }
+        </li>
+    }
+}

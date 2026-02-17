@@ -1,0 +1,26 @@
+﻿@model GrowTree.Web.Models.DashboardViewModel
+@* @{
+    Layout = "_PublicLayout";
+} *@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>Welcome..!</h2>
+<h3>@Model.UserName</h3>
+
+<p>Rank: <b>@Model.Rank</b></p>
+
+<div class="dashboard-grid">
+
+
+    <div class="user-card">
+        <h4>Total Earnings</h4>
+        <h2>$@Model.TotalEarnings</h2>
+
+        <div class="wallet-row">
+            <div>Withdrawable<br />$@Model.WithdrawableWallet</div>
+            <div>Business<br />$@Model.BusinessWallet</div>
+            <div>Upgrade<br />$@Model.UpgradeWallet</div>
+        </div>
+    </div>

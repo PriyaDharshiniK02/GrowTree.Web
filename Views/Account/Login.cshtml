@@ -1,6 +1,9 @@
 ﻿@model GrowTree.Web.Models.LoginViewModel
 
 <h3 style="text-align:center;">Login</h3>
+@{
+    Layout = "_PublicLayout";
+}
 
 @if (TempData["Success"] != null)
 {

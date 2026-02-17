@@ -24,12 +24,12 @@ namespace GrowTree.Web.Models
 
         [Required]
         public string ConfirmPassword { get; set; } = string.Empty;
-
-        public string? TransactionPin { get; set; }
-        public string? ConfirmTransactionPin { get; set; }
-
         [Required]
-        public bool AgreeTerms { get; set; }
+        public int TransactionPin { get; set; }
+        public int ConfirmTransactionPin { get; set; }
+
+        //[Required]
+        //public bool AgreeTerms { get; set; }
 
     }
 }

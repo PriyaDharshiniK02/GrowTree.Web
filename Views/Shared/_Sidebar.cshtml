@@ -1,0 +1,52 @@
+﻿<div class="sidebar">
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+        </li>
+
+        <li>
+            <a asp-controller="Account" asp-action="Register">Register</a>
+        </li>
+
+        <!-- Wallet Dropdown -->
+        <li class="has-submenu">
+            <a href="#">
+                Wallet
+                <span class="dropdown-icon">▼</span>
+            </a>
+
+            <ul class="submenu">
+                <li><a asp-controller="Wallet" asp-action="AddFund">Add Fund</a></li>
+                <li><a asp-controller="Wallet" asp-action="FundTransfer">Fund Transfer</a></li>
+                <li><a asp-controller="Wallet" asp-action="InterWalletTransfer">Inter Wallet Transfer</a></li>
+                <li><a asp-controller="Wallet" asp-action="Packages">Packages</a></li>
+            </ul>
+        </li>
+
+        <!-- Affiliate Dropdown -->
+        <li class="has-submenu">
+            <a href="#">
+                Affiliate
+                <span class="dropdown-icon">▼</span>
+            </a>
+
+            <ul class="submenu">
+                <li><a asp-controller="Affiliate" asp-action="MyDirect">My Direct</a></li>
+                <li><a asp-controller="Affiliate" asp-action="Index">My Team</a></li>
+                <li><a asp-controller="Spillover" asp-action="SpilloverTree">Spillover Tree</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a asp-controller="Account" asp-action="Register">Income</a>
+        </li>
+
+        <li>
+            <a asp-controller="Account" asp-action="Register">Support</a>
+        </li>
+
+    </ul>
+
+</div>

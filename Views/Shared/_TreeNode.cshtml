@@ -1,0 +1,19 @@
+﻿@* @model SpilloverNodeViewModel
+
+<ul>
+    <li>
+        <div class="node">
+            <strong>User @Model.UserId</strong>
+            <div>Level @Model.Level</div>
+        </div>
+
+        @if (Model.Children.Any())
+        {
+            foreach (var child in Model.Children)
+            {
+                @Html.Partial("_TreeNode", child)
+            }
+        }
+    </li>
+</ul>
+ *@
