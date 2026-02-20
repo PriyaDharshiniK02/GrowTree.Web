@@ -1,22 +1,31 @@
 ﻿@model GrowTree.Web.Models.MyTeamViewModel
+
 <h2>My Team</h2>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Level</th>
-            <th>Total Members</th>
-        </tr>
-    </thead>
+
+<p style="color:green;font-weight:600">
+    Current User:
+    <span style="color:black">
+        @Model.CurrentUserName (@Model.CurrentUserCode)
+    </span>
+</p>
+<table class="table table-bordered" style="width:400px">
     <tbody>
         @for (int i = 1; i <= 12; i++)
         {
             <tr>
-                <td>Level @i</td>
-                <td>
-                    @(Model.LevelCounts.ContainsKey(i)
-                                    ? Model.LevelCounts[i]
-                                    : 0)
+                <td style="background:#3c6e0d;color:white;font-weight:bold">
+                    Level @i
+                </td>
+                <td style="background:#f5f7fa">
+                    @if (i == 1)
+                    {
+                        <a asp-action="MyDirect">@Model.LevelCounts[i]</a>
+                    }
+                    else
+                    {
+                        <span>0</span>
+                    }
                 </td>
             </tr>
         }

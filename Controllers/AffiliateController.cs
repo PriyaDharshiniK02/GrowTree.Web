@@ -51,31 +51,35 @@ namespace GrowTree.Web.Controllers
             if (userId == null)
                 return RedirectToAction("Login", "Account");
 
-            List<int> currentLevel = new List<int> { userId.Value };
-            Dictionary<int, int> levelCounts = new Dictionary<int, int>();
+            // ✅ Get current user details
+            var user = _context.Users
+                .Where(u => u.UserId == userId)
+                .Select(u => new
+                {
+                    u.FullName,
+                    u.UserCode   // Tamilmani007
+                })
+                .FirstOrDefault();
 
-            for (int level = 1; level <= 12; level++)
-            {
-                currentLevel = _context.Users
-                    .Where(u => currentLevel.Contains(u.SponsorId ?? 0))
-                    .Select(u => u.UserId)
-                    .ToList();
+            Dictionary<int, int> levelCounts = new();
 
-                if (!currentLevel.Any())
-                    break;
+            // ✅ Level 1 count from VIEW
+            int level1Count = _context.MyDirect.Count();
+            levelCounts[1] = level1Count;
 
-                levelCounts[level] = currentLevel.Count;
-            }
+            // Levels 2–12 = 0
+            for (int i = 2; i <= 12; i++)
+                levelCounts[i] = 0;
 
             var model = new MyTeamViewModel
             {
-                LevelCounts = levelCounts
+                LevelCounts = levelCounts,
+                CurrentUserName = user?.FullName,
+                CurrentUserCode = user?.UserCode
             };
 
             return View(model);
         }
-
-
         private List<int> GetLevelUsers(List<int> parentIds)
         {
             return _context.Users
