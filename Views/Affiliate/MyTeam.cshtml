@@ -1,0 +1,24 @@
+﻿@model GrowTree.Web.Models.MyTeamViewModel
+<h2>My Team</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Level</th>
+            <th>Total Members</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 1; i <= 12; i++)
+        {
+            <tr>
+                <td>Level @i</td>
+                <td>
+                    @(Model.LevelCounts.ContainsKey(i)
+                                    ? Model.LevelCounts[i]
+                                    : 0)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

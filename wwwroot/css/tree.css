@@ -6,23 +6,28 @@
 }
 
 .tree li {
-    list-style-type: none;
+    list-style: none;
     text-align: center;
+    padding: 20px 5px 0 5px;
     position: relative;
-    padding: 20px 40px 0 40px;
 }
-
 /* Connector Lines */
-.tree li::before,
-.tree li::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 50%;
-    border-top: 1px solid #a0d0a0; /* Green tint to match theme */
-    width: 50%;
-    height: 20px;
-}
+    .tree li::before,
+    .tree li::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        border-top: 1px solid #ccc;
+        width: 50%;
+        height: 20px;
+    }
+    .tree li::before {
+        right: 50%;
+    }
+
+    .tree li::after {
+        left: 50%;
+    }
 
 .tree li::after {
     right: auto;
@@ -31,10 +36,11 @@
 }
 
 /* Remove connectors for single child */
-.tree li:only-child::before,
-.tree li:only-child::after {
-    display: none;
-}
+
+    .tree li:only-child::before,
+    .tree li:only-child::after {
+        display: none;
+    }
 
 .tree li:only-child {
     padding-top: 0;
@@ -59,7 +65,15 @@
     border-left: 1px solid #a0d0a0;
     height: 20px;
 }
-
+.tree li ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 1px solid #ccc;
+    width: 0;
+    height: 20px;
+}
 /* Central Node (level 0) */
 .tree .level-0 .node {
     background: #e3f2fd !important; /* Light blue like screenshot central */
@@ -101,4 +115,17 @@
     height: 90px;
     padding: 15px;
     font-size: 12px;
+}
+.node img {
+    width: 70px;
+    height: 70px;
+}
+
+.node-text span {
+    display: block;
+    font-weight: bold;
+}
+
+.node-text small {
+    color: gray;
 }

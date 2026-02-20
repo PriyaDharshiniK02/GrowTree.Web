@@ -1,48 +1,74 @@
 ﻿@model GrowTree.Web.ViewModels.PackageActivationViewModel
 
-
 <h2 class="page-title">Packages</h2>
 
 <div class="package-container">
 
-  
+    <!-- PACKAGE ACTIVATION -->
     <div class="card">
+
         <h3>Package Activation</h3>
 
+        <p>
+            Here you can activate a User ID.
+            Your current wallet balance is
+            <b class="amount">$@Model.WalletBalance</b>
+        </p>
+
         <form asp-action="Activate" method="post">
-            <label>User ID</label>
-            <input asp-for="ActivateUserId" class="form-control" />
 
-            <label>Package</label>
-            <select asp-for="SelectedPackageId" class="form-control">
-                @foreach (var pkg in Model.Packages)
-                    
+            <div class="form-group">
+                <label>User ID</label>
+                <input asp-for="ActivateUserId" class="form-control" />
+            </div>
 
-                {
-                    <option value="@pkg.PackageId">
-                        @pkg.PackageName ($@pkg.Price)
-                    </option>
-                }
-            </select>
+            <div class="form-group">
+                <label>Package</label>
+                <select asp-for="SelectedPackageId" class="form-control">
 
-            <button type="submit" class="btn btn-success mt-2">
+                    @foreach (var pkg in Model.Packages)
+                    {
+                        <option value="@pkg.PackageId">
+                            @pkg.PackageName ($@pkg.Price)
+                        </option>
+                    }
+
+                </select>
+            </div>
+
+            <button type="submit" class="btn-green">
                 Activate
             </button>
+
         </form>
+
     </div>
 
-    
+
+    <!-- PACKAGE UPGRADE -->
     <div class="card">
+
         <h3>Package Upgrade</h3>
 
-        <form asp-action="Upgrade" method="post">
-            <label>User ID</label>
-            <input asp-for="UpgradeUserId" class="form-control" />
+        <p>
+            Here you can upgrade a User ID.
+            Your current wallet balance is
+            <b class="amount">$@Model.WalletBalance</b>
+        </p>
 
-            <button type="submit" class="btn btn-dark mt-2">
+        <form asp-action="Upgrade" method="post">
+
+            <div class="form-group">
+                <label>User ID</label>
+                <input asp-for="UpgradeUserId" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn-green">
                 Upgrade
             </button>
+
         </form>
+
     </div>
 
 </div>

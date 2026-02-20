@@ -89,6 +89,7 @@ namespace GrowTree.Web.Controllers
                         sponsor != null ? sponsor.UserId : (object)DBNull.Value;
 
                     cmd.Parameters.Add("@TransactionPin", SqlDbType.NVarChar, 512).Value = transactionPinHash;
+                    cmd.Parameters.Add("@UserCode", SqlDbType.NVarChar, 20).Value = model.UserCode;
 
                     con.Open();
                     cmd.ExecuteNonQuery();

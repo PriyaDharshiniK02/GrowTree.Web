@@ -1,12 +1,32 @@
-﻿<h2 class="page-title">My Direct</h2>
+﻿@model List<GrowTree.Web.Models.MyDirectViewModel>
 
-<div class="card">
+@{
+    ViewData["Title"] = "My Direct";
+}
 
-    <div class="card-header">
+<div class="card-container">
+
+    <h2 class="page-title">My Direct</h2>
+
+    <!-- Search + Show -->
+    <div class="table-controls">
+
         <input type="text" placeholder="Type in to Search" class="search-box" />
+
+        <div class="show-dropdown">
+            Show
+            <select>
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+            </select>
+        </div>
+
     </div>
 
-    <table class="data-table">
+    <!-- Table -->
+    <table class="custom-table">
+
         <thead>
             <tr>
                 <th>S.NO</th>
@@ -21,11 +41,68 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td colspan="8" style="text-align:center;">No data available</td>
-            </tr>
+            @if (Model != null && Model.Any())
+            {
+                int sno = ViewBag.TotalRecords - ((ViewBag.CurrentPage - 1) * ViewBag.PageSize);
+
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@sno</td>
+                        <td>@item.MemberName</td>
+                        <td>@item.Mobile</td>
+                        <td>@item.JoinDate.ToString("dd-MM-yyyy")</td>
+                        <td>@item.Rank</td>
+                        <td>@item.TotalEarnings</td>
+                        <td>@item.TotalCount</td>
+                        <td>@item.RefCount</td>
+                    </tr>
+
+                    sno--;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" class="no-data">
+                        No data available in table
+                    </td>
+                </tr>
+            }
+
         </tbody>
 
     </table>
+    <div class="pagination-container">
+
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <a asp-action="MyDirect"
+               asp-route-page="@(ViewBag.CurrentPage - 1)"
+               class="page-box">Prev</a>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <span class="page-box active">@i</span>
+            }
+            else
+            {
+                <a asp-action="MyDirect"
+                   asp-route-page="@i"
+                   class="page-box">@i</a>
+            }
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <a asp-action="MyDirect"
+               asp-route-page="@(ViewBag.CurrentPage + 1)"
+               class="page-box">Next</a>
+        }
+
+    </div>
 
 </div>

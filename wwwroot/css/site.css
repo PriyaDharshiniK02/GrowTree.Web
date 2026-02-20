@@ -18,8 +18,17 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+  
 }
+.card {
+    border: none;
+    background: #ffffff;
+}
+
+    .card h3 {
+        font-weight: 600;
+    }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder { 
   color: var(--bs-secondary-color);
@@ -36,12 +45,24 @@ body {
 
 .app-container {
     display: flex;
+   
 }
 .sidebar {
-    width: 220px;
+    width: 230px;
     background: #153d0a;
     color: white;
     min-height: 100vh;
+    
+}
+/* Main content takes remaining space */
+.main-content {
+    flex: 1;
+    background: #f5f6f8;
+}
+
+
+.content-body {
+    padding: 30px 40px;
 }
 
 .sidebar-menu {
@@ -95,7 +116,11 @@ body {
 .has-submenu.active .dropdown-icon {
     transform: rotate(180deg);
 }
-
+.page-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #1b4d0f;
+}
 .package-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -114,6 +139,9 @@ body {
     font-weight: bold;
     color: #2e7d32;
 }
+.btn-green:hover {
+    background: #2f7a1f;
+}
 
 .btn-activate {
     background: #4caf50;
@@ -126,13 +154,195 @@ body {
 }
 .package-container {
     display: flex;
-    gap: 30px;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.btn-green {
+    margin-top: 15px;
+    background: #1b4d0f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.card h3 {
+    color: #1b4d0f;
 }
 
-.card {
-    width: 400px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,.1);
+.amount {
+    color: #0d6efd;
 }
+
+.form-group {
+    margin-top: 15px;
+}
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        display: block;
+    }
+.card {
+    width: 420px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.card {
+    position: relative;
+}
+.card-container {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
+.search-box {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.show-dropdown select {
+    padding: 5px;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+    .custom-table thead {
+        background: #1b5e20;
+        color: white;
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 10px;
+        border: 1px solid #eee;
+        text-align: center;
+    }
+
+.no-data {
+    color: #777;
+}
+
+.pagination {
+    margin-top: 15px;
+}
+
+    .pagination button {
+        padding: 6px 12px;
+        border: none;
+        background: #eee;
+        margin-right: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+body {
+    background: #f5f6f8;
+}
+.public-navbar {
+    background: #001f3f;
+    padding: 15px 20px;
+}
+
+    .public-navbar a {
+        color: white;
+        margin-right: 18px;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .public-navbar a:hover {
+            text-decoration: underline;
+        }
+
+/* Center Login / Register Box */
+.public-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+.login-box {
+    width: 350px;
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+.public-navbar {
+    background: #001f3f;
+    padding: 15px 20px;
+}
+
+/* Left Align Menu */
+.nav-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+    .nav-left a {
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+        font-weight: 500;
+    }
+
+        .nav-left a:hover {
+            text-decoration: underline;
+        }
+.pagination-container {
+    margin-top: 20px;
+}
+
+.page-box {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none !important;
+    background-color: #f8f9fa;
+    color: black !important;
+    font-weight: 500;
+}
+
+    .page-box:hover {
+        background-color: #e2e6ea;
+    }
+
+    .page-box.active {
+        background-color: #1b5e20;
+        color: white !important;
+        border-color: #1b5e20;
+    }

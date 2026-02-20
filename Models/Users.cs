@@ -25,14 +25,12 @@ namespace GrowTree.Web.Models
         [MaxLength(15)]
         public string? Mobile { get; set; }
 
-        [Required]
         [MaxLength(20)]
-        public string ReferralCode { get; set; } = string.Empty;
+        public string? ReferralCode { get; set; }
 
         [Required]
         [MaxLength(255)]
-        public string? TransactionPin { get; set; } = string.Empty;
-
+        public string TransactionPin { get; set; } = string.Empty;
         public int? SponsorId { get; set; }
 
         [ForeignKey("SponsorId")]
@@ -41,11 +39,15 @@ namespace GrowTree.Web.Models
         public bool IsActive { get; set; } = true;
 
         public DateTime CreatedDate { get; set; }
-
         public int? ParentUserID { get; set; }
 
         public int? Level { get; set; }
 
         public string? Position { get; set; }
+        [Required]
+        public string UserCode { get; set; } = string.Empty;
+        public DateTime? JoinDate { get; set; }
+        public string? Rank { get; set; }
+        public decimal TotalEarnings { get; set; } = 0;
     }
 }

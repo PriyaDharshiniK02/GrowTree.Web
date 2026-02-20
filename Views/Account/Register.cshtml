@@ -1,52 +1,75 @@
-﻿@{
-    Layout = "_PublicLayout";
+﻿@model GrowTree.Web.Models.RegisterViewModel
+
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
+<div class="d-flex justify-content-center align-items-center" style="min-height:80vh;">
+
+    <div class="card shadow p-4" style="width:400px; border-radius:12px;">
+@* 
+        <h3 class="text-center mb-4">Register</h3> *@
+        <h3 class="text-center mb-4">
+            <i class="bi bi-person-plus"></i> Register
+        </h3>
+
+        <form asp-action="Register" method="post">
 
 
-@model GrowTree.Web.Models.RegisterViewModel
+            <div class="form-group">
+                <label>Referral Code</label>
+                <input asp-for="ReferralCode" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>User Code</label>
+                <input asp-for="UserCode" class="form-control" />
+            </div>
 
-<h2>Register</h2>
+            @* <div class="form-group">
+                <label>Transaction Pin</label>
+                <input asp-for="TransactionPin" class="form-control" />
+            </div>
 
-<form asp-action="Register" method="post">
+            <div class="mb-3">
+                <label>Confirm TransactionPin</label>
+                <input asp-for="ConfirmTransactionPin"  class="form-control" />
+            </div> *@
 
-    <label>Full Name</label><br />
-    <input asp-for="FullName" /><br />
-    <span asp-validation-for="FullName"></span><br />
+            <div class="mb-3">
+                <label>Full Name</label>
+                <input asp-for="FullName" class="form-control" />
+            </div>
 
-    <label>Email</label><br />
-    <input asp-for="Email" /><br />
-    <span asp-validation-for="Email"></span><br />
+            <div class="mb-3">
+                <label>Email</label>
+                <input asp-for="Email" class="form-control" />
+            </div>
 
-    <label>Mobile</label><br />
-    <input asp-for="Mobile" /><br /><br />
+            <div class="mb-3">
+                <label>Mobile</label>
+                <input asp-for="Mobile" class="form-control" />
+            </div>
 
-    <label>Password</label><br />
-    <input asp-for="Password" type="password" /><br />
+            <div class="mb-3">
+                <label>Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+            </div>
 
+            <div class="mb-3">
+                <label>Confirm Password</label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control" />
+            </div>
 
-    <label>Confirm Password</label><br />
-    <input asp-for="ConfirmPassword" type="password" /><br /><br />
+            <button type="submit" class="btn btn-success w-100">
+                Register
+            </button>
 
+        </form>
 
-    <label>TransactionPin</label><br />
-    <input asp-for="TransactionPin" type="password" /><br /><br />
+        <div class="text-center mt-3">
+            Already have account?
+            <a asp-action="Login">Login</a>
+        </div>
 
-    <label>Confirm TransactionPin</label><br />
-    <input asp-for="ConfirmTransactionPin" type="password" /><br /><br />
+    </div>
 
-    <label>Sponsor Referral Code</label><br />
-    <input asp-for="SponsorReferralCode" /><br /><br />
-
-    <button type="submit">Register</button>
-
-</form>
-
-@if (ViewBag.Success != null)
-{
-    <p style="color:green">@ViewBag.Success</p>
-}
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
-  
+</div>

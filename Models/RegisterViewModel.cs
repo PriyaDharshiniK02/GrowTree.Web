@@ -27,7 +27,9 @@ namespace GrowTree.Web.Models
         [Required]
         public int TransactionPin { get; set; }
         public int ConfirmTransactionPin { get; set; }
+        public string? ReferralCode { get; set; }
 
+        public string UserCode { get; set; }
         //[Required]
         //public bool AgreeTerms { get; set; }
 

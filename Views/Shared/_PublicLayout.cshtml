@@ -2,27 +2,31 @@
 <html>
 <head>
     <title>@ViewData["Title"] - GrowTree</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
 
-    <!-- Top Navbar -->
-    <nav style="background:#2c3e50; padding:10px;">
-        <a asp-controller="Home" asp-action="Index" style="color:white; margin-right:15px;">Home</a>
-        <a asp-controller="Home" asp-action="About" style="color:white; margin-right:15px;">About Us</a>
-        <a asp-controller="Account" asp-action="Login" style="color:white; margin-right:15px;">Business Plan</a>
-        <a asp-controller="Account" asp-action="Register" style="color:white;">Download</a>
-        <a asp-controller="Account" asp-action="Register" style="color:white;">Contact Us</a>
-        <a asp-controller="Account" asp-action="Login" style="color:white; margin-right:15px;">Login</a>
-        <a asp-controller="Account" asp-action="Register" style="color:white;">Register</a>
+    <!-- ✅ Top Navbar -->
+    <nav class="public-navbar">
+
+        <div class="nav-left">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-controller="Home" asp-action="About">About Us</a>
+            <a asp-controller="Account" asp-action="Login">Business Plan</a>
+            <a asp-controller="Account" asp-action="Register">Download</a>
+            <a asp-controller="Account" asp-action="Register">Contact Us</a>
+            <a asp-controller="Account" asp-action="Login">Login</a>
+            <a asp-controller="Account" asp-action="Register">Register</a>
+        </div>
+
     </nav>
 
-    <div class="container">
+
+    <!-- ✅ Login / Register Content Will Load Here -->
+    <div class="public-container">
         @RenderBody()
     </div>
-
-    @RenderSection("Scripts", required: false)
-
-
 
 </body>
 </html>

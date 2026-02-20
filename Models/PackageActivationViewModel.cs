@@ -11,7 +11,8 @@ namespace GrowTree.Web.ViewModels
         
         public int UpgradeUserId { get; set; }
 
-        
+        public decimal WalletBalance { get; set; }
+
         public List<Package> Packages { get; set; }
     }
 }
