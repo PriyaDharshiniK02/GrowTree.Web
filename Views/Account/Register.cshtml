@@ -19,9 +19,11 @@
                 <label>Referral Code</label>
                 <input asp-for="ReferralCode" class="form-control" />
             </div>
+            
             <div class="form-group">
                 <label>User Code</label>
                 <input asp-for="UserCode" class="form-control" />
+                <span asp-validation-for="UserCode" class="text-danger"></span>
             </div>
 
             @* <div class="form-group">

@@ -40,67 +40,80 @@ namespace GrowTree.Web.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            // ✅ Password validation
             if (model.Password != model.ConfirmPassword)
             {
                 ModelState.AddModelError("", "Passwords do not match");
                 return View(model);
             }
 
+            // ✅ Transaction pin validation
             if (model.TransactionPin != model.ConfirmTransactionPin)
             {
                 ModelState.AddModelError("", "Transaction pin does not match");
                 return View(model);
             }
 
+            // ✅ Email check
             if (_context.Users.Any(u => u.Email == model.Email))
             {
                 ModelState.AddModelError("", "Email already exists");
                 return View(model);
             }
 
-            User? sponsor = null;
-            if (!string.IsNullOrEmpty(model.SponsorReferralCode))
+            // ✅ UserCode uniqueness check
+            if (_context.Users.Any(u => u.UserCode == model.UserCode))
             {
-                sponsor = _context.Users
-                    .FirstOrDefault(u => u.ReferralCode == model.SponsorReferralCode);
+                ModelState.AddModelError("UserCode", "This user code is already taken");
+                return View(model);
             }
 
-            string referralCode = Guid.NewGuid().ToString("N")
-                .Substring(0, 8).ToUpper();
+            // ✅ Referral validation
+            if (!string.IsNullOrEmpty(model.ReferralCode))
+            {
+                bool referralExists = _context.Users
+                    .Any(u => u.UserCode == model.ReferralCode);
 
-             
-          string passwordHash = HashPassword(model.Password);
-          string transactionPinHash = HashPassword(model.TransactionPin.ToString());
+                if (!referralExists)
+                {
+                    ModelState.AddModelError("ReferralCode", "Invalid referral code");
+                    return View(model);
+                }
+            }
+
+            string passwordHash = HashPassword(model.Password);
+            string transactionPinHash = HashPassword(model.TransactionPin.ToString());
 
             using (SqlConnection con = new SqlConnection(
-              _configuration.GetConnectionString("DefaultConnection")))
+                _configuration.GetConnectionString("DefaultConnection")))
             {
                 using (SqlCommand cmd = new SqlCommand("sp_RegisterUser", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@FullName", SqlDbType.NVarChar, 100).Value = model.FullName;
-                    cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = model.Email;
-                    cmd.Parameters.Add("@Mobile", SqlDbType.NVarChar, 20).Value = model.Mobile;
-                    cmd.Parameters.Add("@PasswordHash", SqlDbType.NVarChar, 512).Value = passwordHash;
-                    cmd.Parameters.Add("@ReferralCode", SqlDbType.NVarChar, 20).Value = referralCode;
+                    cmd.Parameters.AddWithValue("@FullName", model.FullName);
+                    cmd.Parameters.AddWithValue("@Email", model.Email);
+                    cmd.Parameters.AddWithValue("@Mobile", model.Mobile);
+                    cmd.Parameters.AddWithValue("@PasswordHash", passwordHash);
+                    cmd.Parameters.AddWithValue("@TransactionPin", transactionPinHash);
+                    cmd.Parameters.AddWithValue("@UserCode", model.UserCode);
 
-                    cmd.Parameters.Add("@SponsorId", SqlDbType.Int).Value =
-                        sponsor != null ? sponsor.UserId : (object)DBNull.Value;
-
-                    cmd.Parameters.Add("@TransactionPin", SqlDbType.NVarChar, 512).Value = transactionPinHash;
-                    cmd.Parameters.Add("@UserCode", SqlDbType.NVarChar, 20).Value = model.UserCode;
+                    cmd.Parameters.Add("@ReferralCode", SqlDbType.NVarChar, 20).Value =
+                        string.IsNullOrEmpty(model.ReferralCode)
+                        ? (object)DBNull.Value
+                        : model.ReferralCode;
 
                     con.Open();
+                    Console.WriteLine(model.UserCode.Length);
+                    Console.WriteLine(passwordHash.Length);
+                    Console.WriteLine(transactionPinHash.Length);
                     cmd.ExecuteNonQuery();
                 }
-
             }
 
             ViewBag.Success = "Registration successful";
             return View();
         }
-
 
 
         [HttpGet]
